@@ -11,6 +11,13 @@ public class Attraction implements Force
 	float distanceMin;
 	float distanceMinSquared;
 	
+	/**
+	 * @param a Particle A
+	 * @param b Particle B
+	 * @param k Strength
+	 * @param distanceMin Minimun Distance
+	 */
+	
 	public Attraction( Particle a, Particle b, float k, float distanceMin )
 	{
 		this.a = a;
@@ -21,52 +28,89 @@ public class Attraction implements Force
 		this.distanceMinSquared = distanceMin*distanceMin;
 	}
 
+	/**
+	 * Set Particle A
+	 * @param p Particle A
+	 */
 	protected void setA( Particle p )
 	{
 		a = p;
 	}
-
+	
+	/**
+	 * Set Particle B
+	 * @param p Particle B
+	 */
 	protected void setB( Particle p )
 	{
 		b = p;
 	}
 
+	/**
+	 * get Minimun Distance
+	 * @return float
+	 */
 	public final float getMinimumDistance()
 	{
 		return distanceMin;
 	}
 
+	/**
+	 * set Minimun Distance
+	 * @param d 
+	 */
 	public final void setMinimumDistance( float d )
 	{
 		distanceMin = d;
 		distanceMinSquared = d*d;
 	}
-
+	
+	/**
+	 *  Turn off Attraction
+	 */
 	public final void turnOff()
 	{
 		on = false;
 	}
 
+	/**
+	 * Turn on Attraction
+	 */
 	public final void turnOn()
 	{
 		on = true;
 	}
 
+	/**
+	 * Set Strength
+	 * @param k set Strength float
+	 */
 	public final void setStrength( float k )
 	{
 		this.k = k;
 	}
-
+	
+	/**
+	 * get Particle A
+	 * @return particle A
+	 */
 	public final Particle getOneEnd()
 	{
 		return a;
 	}
 
+	/**
+	 * get Particle B
+	 * @return particle B
+	 */
 	public final Particle getTheOtherEnd()
 	{
 		return b;
 	}
 
+	/**
+	 * apply attraction
+	 */
 	public void apply()
 	{
 		if ( on && ( a.isFree() || b.isFree() ) )
@@ -105,16 +149,26 @@ public class Attraction implements Force
 		}
 	}
 
+	/**
+	 * get Strength
+	 * @return float Strength
+	 */
 	public final float getStrength()
 	{
 		return k;
 	}
-
+	
+	/** check if attraction is on
+	 * @return boolean on
+	 */
 	public final boolean isOn()
 	{
 		return on;
 	}
 
+	/** check if attraction is off
+	 * @return boolean !on
+	 */
 	public final boolean isOff()
 	{
 		return !on;

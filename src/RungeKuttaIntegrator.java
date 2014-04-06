@@ -2,37 +2,45 @@ package traer.physics;
 
 import java.util.*;
 
+
 public class RungeKuttaIntegrator implements Integrator
 {	
-	ArrayList originalPositions;
-	ArrayList originalVelocities;
-	ArrayList k1Forces;
-	ArrayList k1Velocities;
-	ArrayList k2Forces;
-	ArrayList k2Velocities;
-	ArrayList k3Forces;
-	ArrayList k3Velocities;
-	ArrayList k4Forces;
-	ArrayList k4Velocities;
+	ArrayList<Vector3D> originalPositions;
+	ArrayList<Vector3D> originalVelocities;
+	ArrayList<Vector3D> k1Forces;
+	ArrayList<Vector3D> k1Velocities;
+	ArrayList<Vector3D> k2Forces;
+	ArrayList<Vector3D> k2Velocities;
+	ArrayList<Vector3D> k3Forces;
+	ArrayList<Vector3D> k3Velocities;
+	ArrayList<Vector3D> k4Forces;
+	ArrayList<Vector3D> k4Velocities;
 	
 	ParticleSystem s;
 	
+	/**
+	 * Create Runge Kutta Integrator
+	 * @param s ParticleSystem
+	 */
 	public RungeKuttaIntegrator( ParticleSystem s )
 	{
 		this.s = s;
 		
-		originalPositions = new ArrayList();
-		originalVelocities = new ArrayList();
-		k1Forces = new ArrayList();
-		k1Velocities = new ArrayList();
-		k2Forces = new ArrayList();
-		k2Velocities = new ArrayList();
-		k3Forces = new ArrayList();
-		k3Velocities = new ArrayList();
-		k4Forces = new ArrayList();
-		k4Velocities = new ArrayList();
+		originalPositions   = new ArrayList<Vector3D>();
+		originalVelocities  = new ArrayList<Vector3D>();
+		k1Forces 			= new ArrayList<Vector3D>();
+		k1Velocities 		= new ArrayList<Vector3D>();
+		k2Forces 			= new ArrayList<Vector3D>();
+		k2Velocities 		= new ArrayList<Vector3D>();
+		k3Forces 			= new ArrayList<Vector3D>();
+		k3Velocities 		= new ArrayList<Vector3D>();
+		k4Forces 			= new ArrayList<Vector3D>();
+		k4Velocities 		= new ArrayList<Vector3D>();
 	}
 	
+	/*
+	 * non-Javadoc
+	 */
 	final void allocateParticles()
 	{
 		while ( s.particles.size() > originalPositions.size() )
@@ -50,6 +58,10 @@ public class RungeKuttaIntegrator implements Integrator
 		}
 	}
 	
+	/**
+	 * step of integrator deltaT
+	 * @param deltaT float
+	 */
 	public final void step( float deltaT )
 	{	
 		allocateParticles();

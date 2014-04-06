@@ -43,7 +43,7 @@ void mouseMoved() {
 void mousePressed() {
   //add Atrraction
   for ( int i = 0; i < others.length; i++ ) {
-    physics.makeAttraction( mouse, others[i], 500, 50 );
+    physics.makeAttraction( mouse, others[i], 5000, 50 );
   }
   mouse.position().set( mouseX, mouseY, 0 );
 }
@@ -55,7 +55,7 @@ void mouseDragged() {
 void mouseReleased() {
   for ( int i = 0; i < physics.numberOfAttractions(); i++ ) {
     Attraction t = physics.getAttraction(i);
-    t.setStrength(-10);
+    t.setStrength(-100);
   }
 
   for ( int i = 0; i < physics.numberOfAttractions(); i++ ) {

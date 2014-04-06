@@ -22,12 +22,10 @@ void setup() {
 
   for ( int i = 0; i < others.length; i++ ) {
     others[i] = physics.makeParticle( 1.0, random( 0, width ), random( 0, height ), 0 );
-    physics.makeAttraction( mouse, others[i], 5000, 50 );
   }
 }
 
 void draw() {
-  mouse.position().set( mouseX, mouseY, 0 );
 
   physics.tick();
 
@@ -45,24 +43,23 @@ void mouseMoved() {
 void mousePressed() {
   //add Atrraction
   for ( int i = 0; i < others.length; i++ ) {
-    Attraction attraction = physics.getAttraction(i);
+    physics.makeAttraction( mouse, others[i], 500, 50 );
   }
+  mouse.position().set( mouseX, mouseY, 0 );
 }
 
 void mouseDragged() {
-  for ( int i = 0; i < others.length; i++ ) {
-    Attraction attraction = physics.getAttraction(i);
-  }
+  mouse.position().set( mouseX, mouseY, 0 );
 }
 
 void mouseReleased() {
-  for ( int i = 0; i < others.length; i++ ) {
-    Attraction attraction = physics.getAttraction(i);
+  for ( int i = 0; i < physics.numberOfAttractions(); i++ ) {
+    Attraction t = physics.getAttraction(i);
+    t.setStrength(-10);
   }
 
-  //Change Attraction -> repulsion
-  for ( int i = 0; i < others.length; i++ ) {
-    Attraction attraction = physics.getAttraction(i);
+  for ( int i = 0; i < physics.numberOfAttractions(); i++ ) {
+    physics.removeAttraction(i);
   }
 }
 
